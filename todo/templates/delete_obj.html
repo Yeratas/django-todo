@@ -1,0 +1,39 @@
+{%extends 'main.html'%}
+
+{%block content%}
+<div class="flex justify-between p-6 border bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+    <div class="order-1">
+        <h2 class="font-extrabold text-3xl">Django ToDo</h2>
+    </div>
+    <div class="order-2 flex justify-between font-bold my-auto">
+        <div class="order-1 hover:underline">
+            {{request.user}}
+        </div>
+        <div class="order-2 px-4 hover:underline">
+            <a href="{%url 'logout' %}">Logout</a>
+        </div>
+    </div> 
+</div>
+    <div class="container mx-auto">
+        <div class="max-w-xl  mx-auto mt-20 border rounded-md bg-gradient-to-r from-cyan-500 to-blue-500">
+            <div class="m-1 border rounded-md bg-white p-6">
+                <div class="flex justify-between pb-6">
+                    <div class="order-1 text-2xl font-extrabold">
+                        <span>Delete</span>                        
+                    </div>
+                    <div class="order-2 font-bold my-auto">
+                        <span><a href="{%url 'home' %}" class="hover:text-sky-600 hover:underline">Go back</a></span>
+                    </div>
+                </div>
+                <p class="text-xl">Are you sure to delete task named {{task_to_delete.title}} ?</p>
+                <form method="post">
+                    {%csrf_token%}
+                    <div class="text-center mt-6">
+                        <input type="submit" value="Confirm" class="px-3 py-2 text-xl font-extrabold border-2 border-2 border-sky-600 rounded-lg hover:text-sky-600">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{%endblock%}

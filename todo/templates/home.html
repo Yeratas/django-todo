@@ -1,0 +1,80 @@
+
+{%extends 'main.html'%}
+
+{%block content%}
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {%if user.is_authenticated%}
+    <div class="flex justify-between p-6 border bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+        <div class="order-1">
+            <h2 class="font-extrabold text-3xl">Django ToDo</h2>
+        </div>
+        <div class="order-2 flex justify-between font-bold my-auto">
+            <div class="order-1 hover:underline">
+                {{request.user}}
+            </div>
+            <div class="order-2 px-4 hover:underline">
+                <a href="{%url 'logout' %}">Logout</a>
+            </div>
+        </div> 
+    </div>
+    {%else%}
+    <div class="flex justify-between p-6 border from-cyan-500 to-blue-500 text-white">
+        <div class="order-1">
+            <h2 class="font-extrabold text-3xl">Django ToDo</h2>
+        </div>
+        <div class="order-2 px-4 font-bold my-auto hover:underline">
+            <a href="{%url 'login' %}">Login</a>
+        </div> 
+    </div>
+    {%endif%}
+
+    <div class="container mx-auto">
+        <div class="max-w-2xl mx-auto border mt-20 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500"> 
+            <div class="m-1 border rounded-md bg-white">
+                <div class="p-6 flex justify-between">
+                    <div class="order-1 font-bold text-xl">
+                        <span>Add Task</span>
+                    </div>
+                    <div class="order-2">
+                        <a href="{%url 'add-task' %}" class="border-2 px-2 py-1 font-extrabold text-xl rounded-md border-slate-600 bg-sky-300 hover:bg-sky-500 hover:text-white">+</a>
+                    </div>
+                </div>
+                <div class="px-6 py-2 flex justify-between">
+                    <div class="order-1">
+                        <span>Task Title</span>
+                    </div>
+                    <div class="order-2">
+                        Action
+                    </div>
+                </div>
+                <hr>
+                <div class="px-6 py-2 flex justify-between mb-4">
+                    {%for task in task_records%}
+                        <div class="order-1">
+                            {{task.title}}
+                        </div>
+
+                        <div class="flex justify-between order-2">
+                            <div class="order-1  px-4">
+                                <a href="{%url 'edit-task' task.id %}" class="hover:text-sky-600">Edit</a>
+                            </div>
+                            <div class="order-2">  
+                                <a href="{%url 'delete-task' task.id %}" class="hover:text-sky-600">Delete</a>
+                            </div>
+                        </div>
+                        
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{%endblock%}
