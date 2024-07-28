@@ -55,8 +55,9 @@
                     </div>
                 </div>
                 <hr>
-                <div class="px-6 py-2 flex justify-between mb-4">
+                <div class="mb-6">
                     {%for task in task_records%}
+                    <div class="px-6 pt-2 flex justify-between">
                         <div class="order-1">
                             {{task.title}}
                         </div>
@@ -69,7 +70,7 @@
                                 <a href="{%url 'delete-task' task.id %}" class="hover:text-sky-600">Delete</a>
                             </div>
                         </div>
-                        
+                    </div>
                     {%endfor%}
                 </div>
             </div>
