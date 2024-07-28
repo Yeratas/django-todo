@@ -1,3 +1,4 @@
+Project was completed using django and tailwindcss frameworks
 This is the working deminstration of code:
 
 
